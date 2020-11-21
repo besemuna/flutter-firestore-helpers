@@ -14,4 +14,6 @@ class FirestoreHelper {
     final reference = _firestore.collection(path);
     return reference.add(data);
   }
+
+  Future<DocumentSnapshot> getData(String path) async {}
 }
