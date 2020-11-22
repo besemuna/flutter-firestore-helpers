@@ -16,6 +16,24 @@ class FirestoreHelper {
   }
 
   Future<DocumentSnapshot> getData(String path) async {
-     return await _firestore.doc(path).get();
+    return await _firestore.doc(path).get();
+  }
+
+  Future<List<T>> getDataCollection<T>({
+    String path,
+    T builder({
+      Map<String, dynamic> data,
+      String documentID,
+      DocumentSnapshot snapshot,
+    }),
+    Query queryBuilder(CollectionReference query),
+  }) async {
+    Query query = _firestore.collection(path);
+
+    return (await query.get())
+        .docs
+        .map((snapshot) => builder(
+            data: snapshot.data(), documentID: snapshot.id, snapshot: snapshot))
+        .toList();
   }
 }
