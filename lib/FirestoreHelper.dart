@@ -30,6 +30,10 @@ class FirestoreHelper {
   }) async {
     Query query = _firestore.collection(path);
 
+    if (queryBuilder != null) {
+      query = queryBuilder(query);
+    }
+
     return (await query.get())
         .docs
         .map((snapshot) => builder(
