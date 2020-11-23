@@ -40,4 +40,8 @@ class FirestoreHelper {
             data: snapshot.data(), documentID: snapshot.id, snapshot: snapshot))
         .toList();
   }
+
+  Future<void> deleteData(String path) async {
+    await _firestore.doc(path).delete();
+  }
 }
