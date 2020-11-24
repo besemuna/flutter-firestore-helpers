@@ -44,4 +44,6 @@ class FirestoreHelper {
   Future<void> deleteData(String path) async {
     await _firestore.doc(path).delete();
   }
+
+  Stream<List<T>> collectionStream<T>() {}
 }
