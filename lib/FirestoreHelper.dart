@@ -51,6 +51,22 @@ class FirestoreHelper {
     Query queryBuilder(Query query),
     int sort(T lhs, T rhs),
   }) {
-    
+    Query query = _firestore.collection(path);
+
+    if (queryBuilder != null) {
+      query = queryBuilder(query);
+    }
+
+    final snapshots = query.snapshots();
+    return snapshots.map((snapshot) {
+      final result =
+          snapshot.docs.map((item) => builder(item.data(), item.id)).toList();
+
+      if (sort != null) {
+        result.sort(sort);
+      }
+
+      return result;
+    });
   }
 }
