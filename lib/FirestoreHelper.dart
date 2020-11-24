@@ -45,5 +45,12 @@ class FirestoreHelper {
     await _firestore.doc(path).delete();
   }
 
-  Stream<List<T>> collectionStream<T>() {}
+  Stream<List<T>> collectionStream<T>({
+    String path,
+    T builder(Map<String, dynamic> data, String documentId),
+    Query queryBuilder(Query query),
+    int sort(T lhs, T rhs),
+  }) {
+    
+  }
 }
