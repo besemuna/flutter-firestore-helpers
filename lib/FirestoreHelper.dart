@@ -71,5 +71,8 @@ class FirestoreHelper {
   }
 
   Stream<T> documentStream<T>(
-      {String path, builder(Map<String, dynamic> data, String documentId)}) {}
+      {String path, builder(Map<String, dynamic> data, String documentId)}) {
+    final reference = _firestore.doc(path).snapshots();
+    return reference.map((snap) => builder(snap.data(), snap.id));
+  }
 }
