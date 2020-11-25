@@ -69,4 +69,7 @@ class FirestoreHelper {
       return result;
     });
   }
+
+  Stream<T> documentStream<T>(
+      {String path, builder(Map<String, dynamic> data, String documentId)}) {}
 }
