@@ -1,22 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreHelper {
-  final _firestore = FirebaseFirestore.instance;
+  final firestore = FirebaseFirestore.instance;
 
   Future<void> setData({String path, Map<String, dynamic> data}) async {
-    await _firestore.doc(path).set(data, SetOptions(merge: true));
+    await firestore.doc(path).set(data, SetOptions(merge: true));
   }
 
   Future<DocumentReference> addDocument({
     String path,
     Map<String, dynamic> data,
   }) async {
-    final reference = _firestore.collection(path);
+    final reference = firestore.collection(path);
     return reference.add(data);
   }
 
   Future<DocumentSnapshot> getData(String path) async {
-    return await _firestore.doc(path).get();
+    return await firestore.doc(path).get();
   }
 
   Future<List<T>> getDataCollection<T>({
@@ -28,7 +28,7 @@ class FirestoreHelper {
     }),
     Query queryBuilder(CollectionReference query),
   }) async {
-    Query query = _firestore.collection(path);
+    Query query = firestore.collection(path);
 
     if (queryBuilder != null) {
       query = queryBuilder(query);
@@ -42,7 +42,7 @@ class FirestoreHelper {
   }
 
   Future<void> deleteData(String path) async {
-    await _firestore.doc(path).delete();
+    await firestore.doc(path).delete();
   }
 
   Stream<List<T>> collectionStream<T>({
@@ -51,7 +51,7 @@ class FirestoreHelper {
     Query queryBuilder(Query query),
     int sort(T lhs, T rhs),
   }) {
-    Query query = _firestore.collection(path);
+    Query query = firestore.collection(path);
 
     if (queryBuilder != null) {
       query = queryBuilder(query);
@@ -72,7 +72,7 @@ class FirestoreHelper {
 
   Stream<T> documentStream<T>(
       {String path, builder(Map<String, dynamic> data, String documentId)}) {
-    final reference = _firestore.doc(path).snapshots();
+    final reference = firestore.doc(path).snapshots();
     return reference.map((snap) => builder(snap.data(), snap.id));
   }
 }
