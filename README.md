@@ -14,16 +14,30 @@ Make sure to import the `helper` class and `initialize` it.
 #### SetData
 ```dart
     updateShippingAddress() async {
-
         final userId = "xxxx";
 
         final Map<String, dynamic> data = {
-        "name" : "Black velvet cap",
-        "quantity" : 2,
-        "price": 9.99,
+            "user_id" : userId,
+            "name" : "23 Prime Way Churchill House",
+        }
+
+        await firestoreService.setData(path : "shipping_addresses/${userId}", data : data);
+
     }
 
-    await firestoreService.setData(path : "shipping_addresses/${userId}", data : data);
+```
+
+#### addDocument
+```dart
+    addShippingAddress() async {
+        final userId = "xxxx";
+
+        final Map<String, dynamic> data = {
+            "user_id" : userId,
+            "name" : "1 Applewood Ave Spruce Tree Cottage",
+        }
+
+        await firestoreService.addDocument(path : "shipping_addresses", data : data);
 
     }
 
