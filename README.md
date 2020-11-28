@@ -42,3 +42,12 @@ Make sure to import the `helper` class and `initialize` it.
     }
 
 ```
+
+#### getData
+```dart
+    getShippingAddress() async {
+        final shippingAddressId = "xxxx";
+        final shippingAddress = await firestoreService.getData("shipping_addresses/${shippingAddressId}");
+    }
+
+```
