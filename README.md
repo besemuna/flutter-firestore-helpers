@@ -55,7 +55,8 @@ Make sure to import the `helper` class and `initialize` it.
 #### deleteData
 ```dart
     deleteShippingAddress() async {
-     
+        final shippingAddressId = "xxxx";
+        final shippingAddress = await firestoreService.deleteData("shipping_addresses/${shippingAddressId}");
     }
 
 ```
