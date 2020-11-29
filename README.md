@@ -51,3 +51,11 @@ Make sure to import the `helper` class and `initialize` it.
     }
 
 ```
+
+#### deleteData
+```dart
+    deleteShippingAddress() async {
+     
+    }
+
+```
