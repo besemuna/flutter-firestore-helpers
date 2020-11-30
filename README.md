@@ -62,4 +62,29 @@ Make sure to import the `helper` class and `initialize` it.
 ```
 
 #### getDataCollection
+```dart
+    class ShippingAddress {
+        final id;
+        final userId;
+        final name;
 
+        factory ShippingAddress.fromMap({
+            Map<String, dynamic> data,
+            String documentId,
+        }) {
+            return ShippingAddress(
+                id : documentId,
+                userId: data["user_id"],
+                name: data["name"]
+            );
+        }
+    }
+
+    getShippingAddresses() async {
+        final user_id = "xxxx";
+        final builder = (Map<String, dynamic> data, String documentID, DocumentSnapshot snapshot) => ShippingAddress.fromMap(documentId : documentID, data : snapshot.data);
+
+        final shippingAddresses = await firestoreService.getDataCollection(path :"shipping_addresses", builder : builder);
+    }
+
+```
