@@ -60,3 +60,6 @@ Make sure to import the `helper` class and `initialize` it.
     }
 
 ```
+
+#### getDataCollection
+
