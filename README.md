@@ -100,7 +100,23 @@ Make sure to import the `helper` class and `initialize` it.
 
 #### documentStream
 ```dart
- 
+    class ShippingAddress {
+        final id;
+        final userId;
+        final name;
+
+        factory ShippingAddress.fromMap({
+            Map<String, dynamic> data,
+            String documentId,
+        }) {
+            return ShippingAddress(
+                id : documentId,
+                userId: data["user_id"],
+                name: data["name"]
+            );
+        }
+    }
+
     getShippingAddressesStream() async {
        
     }
