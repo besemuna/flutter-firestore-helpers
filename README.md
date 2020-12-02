@@ -118,7 +118,10 @@ Make sure to import the `helper` class and `initialize` it.
     }
 
     getShippingAddressesStream() async {
-       
+        final user_id = "xxxx";
+        final builder = (Map<String, dynamic> data, String documentID, DocumentSnapshot snapshot) => ShippingAddress.fromMap(documentId : documentID, data : snapshot.data);
+
+        final shippingAddresses =  firestoreService.collectionStream<ShippingAddress>(path :"shipping_addresses", builder : builder);
     }
 
 ```
